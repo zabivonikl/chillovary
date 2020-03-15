@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UC5dgoavpIertLkNDDITDoBQ"/>
+ <id>yt:channel:UC5dgoavpIertLkNDDITDoBQ</id>
+ <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+ <title>Дмитрий Бачило</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ"/>
+ <author>
+  <name>Дмитрий Бачило</name>
+  <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+ </author>
+ <published>2007-02-11T15:05:30+00:00</published>
+ <entry>
+  <id>yt:video:RZ4vODytgEc</id>
+  <yt:videoId>RZ4vODytgEc</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Видео на Салфетке: Книга про 3Dfx</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=RZ4vODytgEc"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-03-03T04:19:11+00:00</published>
+  <updated>2020-03-06T02:13:13+00:00</updated>
+  <media:group>
+   <media:title>Видео на Салфетке: Книга про 3Dfx</media:title>
+   <media:content url="https://www.youtube.com/v/RZ4vODytgEc?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/RZ4vODytgEc/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Книга наконец-то вышла!
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="3237" average="4.94" min="1" max="5"/>
+    <media:statistics views="20864"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:ODYw-gmPecU</id>
+  <yt:videoId>ODYw-gmPecU</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Ремонт ноутбука HP Pavilion G7 [vlog]</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=ODYw-gmPecU"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-02-25T12:31:25+00:00</published>
+  <updated>2020-03-02T06:38:56+00:00</updated>
+  <media:group>
+   <media:title>Ремонт ноутбука HP Pavilion G7 [vlog]</media:title>
+   <media:content url="https://www.youtube.com/v/ODYw-gmPecU?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/ODYw-gmPecU/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Зачем-то снял на камеру видео про замену задней крышки дисплея ноутбука HP Pavilion G7. Почти ASMR. Видео для хорошего сна в общем.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="3084" average="4.88" min="1" max="5"/>
+    <media:statistics views="31387"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:ocvfZE9M3yw</id>
+  <yt:videoId>ocvfZE9M3yw</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[Стрим] Quake2 RTX [часть 3]</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=ocvfZE9M3yw"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-02-02T06:51:02+00:00</published>
+  <updated>2020-02-19T04:02:35+00:00</updated>
+  <media:group>
+   <media:title>[Стрим] Quake2 RTX [часть 3]</media:title>
+   <media:content url="https://www.youtube.com/v/ocvfZE9M3yw?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/ocvfZE9M3yw/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Quake2 RTX / Debian / Ryzen 3600 / GeForce RTX 2060 Super</media:description>
+   <media:community>
+    <media:starRating count="836" average="4.88" min="1" max="5"/>
+    <media:statistics views="11803"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:2L0s_p-t3m0</id>
+  <yt:videoId>2L0s_p-t3m0</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[Стрим] Quake2 RTX [часть 2]</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=2L0s_p-t3m0"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-02-02T06:50:26+00:00</published>
+  <updated>2020-02-02T09:22:24+00:00</updated>
+  <media:group>
+   <media:title>[Стрим] Quake2 RTX [часть 2]</media:title>
+   <media:content url="https://www.youtube.com/v/2L0s_p-t3m0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/2L0s_p-t3m0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Quake2 RTX / Debian / Ryzen 3600 / GeForce RTX 2060 Super</media:description>
+   <media:community>
+    <media:starRating count="336" average="4.81" min="1" max="5"/>
+    <media:statistics views="5115"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:_hcENreL_XA</id>
+  <yt:videoId>_hcENreL_XA</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[Стрим] Quake2 RTX [часть 1]</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=_hcENreL_XA"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-02-02T06:49:02+00:00</published>
+  <updated>2020-03-07T00:27:08+00:00</updated>
+  <media:group>
+   <media:title>[Стрим] Quake2 RTX [часть 1]</media:title>
+   <media:content url="https://www.youtube.com/v/_hcENreL_XA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/_hcENreL_XA/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Quake2 RTX / Debian / Ryzen 3600 / GeForce RTX 2060 Super</media:description>
+   <media:community>
+    <media:starRating count="1916" average="4.88" min="1" max="5"/>
+    <media:statistics views="32670"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:t1HM1kn1xXg</id>
+  <yt:videoId>t1HM1kn1xXg</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Кремниевые Титаны #26: NVidia RTX (и Quake 2 на GeForce RTX 2060 Super)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=t1HM1kn1xXg"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-01-27T11:47:47+00:00</published>
+  <updated>2020-03-07T00:46:33+00:00</updated>
+  <media:group>
+   <media:title>Кремниевые Титаны #26: NVidia RTX (и Quake 2 на GeForce RTX 2060 Super)</media:title>
+   <media:content url="https://www.youtube.com/v/t1HM1kn1xXg?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/t1HM1kn1xXg/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Пытаемся разобраться, что такое RTX, Raytracing, Pathtracing, и зачем всё это нужно нам.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="8019" average="4.95" min="1" max="5"/>
+    <media:statistics views="48609"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:WXfcV2iH7eg</id>
+  <yt:videoId>WXfcV2iH7eg</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[vlog] Собираем сервер репозитория AllUnix Desktop</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=WXfcV2iH7eg"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2020-01-08T06:26:47+00:00</published>
+  <updated>2020-02-09T23:48:16+00:00</updated>
+  <media:group>
+   <media:title>[vlog] Собираем сервер репозитория AllUnix Desktop</media:title>
+   <media:content url="https://www.youtube.com/v/WXfcV2iH7eg?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/WXfcV2iH7eg/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Тому самому дистрибутиву Linux, про который я говорил в новогоднем выпуске нужен сервер для раздачи, его и соберем.
+
+Скачать дистрибутив можно тут: https://yadi.sk/d/b5hy2IdV1oer_Q
+Или тут: http://allunix.ru/ISO/AllUnixDesktop-1.0-BETA2.bin.gz
+
+Оболочку для FreeRDP (RDP-клиент) отдельно, тут: https://github.com/dbachilo/nrc
+
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="4239" average="4.90" min="1" max="5"/>
+    <media:statistics views="46854"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:wSUT-hppNk0</id>
+  <yt:videoId>wSUT-hppNk0</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Вместо новогодних передач на ТВ - 2020</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=wSUT-hppNk0"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-12-30T21:05:54+00:00</published>
+  <updated>2020-02-17T11:40:23+00:00</updated>
+  <media:group>
+   <media:title>Вместо новогодних передач на ТВ - 2020</media:title>
+   <media:content url="https://www.youtube.com/v/wSUT-hppNk0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/wSUT-hppNk0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Очередное фоновое видео для нарезки салатов
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="5472" average="4.93" min="1" max="5"/>
+    <media:statistics views="66564"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:bK-j6qFlReo</id>
+  <yt:videoId>bK-j6qFlReo</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Собираем ноут на линуксе в подарок [vlog]</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=bK-j6qFlReo"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-12-21T07:39:26+00:00</published>
+  <updated>2020-02-09T01:41:36+00:00</updated>
+  <media:group>
+   <media:title>Собираем ноут на линуксе в подарок [vlog]</media:title>
+   <media:content url="https://www.youtube.com/v/bK-j6qFlReo?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/bK-j6qFlReo/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Очередная каша из топора или BolgenOS, но только аппаратный. Баловство в общем. Если кому интересно, общий бюджет проекта - 25 000 рублей.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="6252" average="4.80" min="1" max="5"/>
+    <media:statistics views="74153"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:oRsL3e3Pni0</id>
+  <yt:videoId>oRsL3e3Pni0</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Тестовый стрим с работы (Linux и Firewatch)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=oRsL3e3Pni0"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-12-07T16:31:58+00:00</published>
+  <updated>2020-02-03T01:47:10+00:00</updated>
+  <media:group>
+   <media:title>Тестовый стрим с работы (Linux и Firewatch)</media:title>
+   <media:content url="https://www.youtube.com/v/oRsL3e3Pni0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/oRsL3e3Pni0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Общаемся и играем в Firewatch (на Linux)
+Начат приём вопросов для новогоднего выпуска: http://16-bits.ru/%d0%bf%d1%80%d0%b8%d1%91%d0%bc-%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81%d0%be%d0%b2-2020/#comments</media:description>
+   <media:community>
+    <media:starRating count="1375" average="4.89" min="1" max="5"/>
+    <media:statistics views="20188"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:12NnQ-rGOrc</id>
+  <yt:videoId>12NnQ-rGOrc</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[VLOG] Level Up Days 2019 Новосибирск</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=12NnQ-rGOrc"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-09-30T06:03:43+00:00</published>
+  <updated>2019-12-26T10:29:03+00:00</updated>
+  <media:group>
+   <media:title>[VLOG] Level Up Days 2019 Новосибирск</media:title>
+   <media:content url="https://www.youtube.com/v/12NnQ-rGOrc?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/12NnQ-rGOrc/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Сходил на тусовку Нинтендо. Спасибо Warp Zone fanclub и Comicz Era.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="2898" average="4.91" min="1" max="5"/>
+    <media:statistics views="25502"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:gTRhr6Ut28g</id>
+  <yt:videoId>gTRhr6Ut28g</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>[VLOG] ACA500plus - разгоняем Амигу</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=gTRhr6Ut28g"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-09-11T16:43:57+00:00</published>
+  <updated>2020-03-07T00:42:02+00:00</updated>
+  <media:group>
+   <media:title>[VLOG] ACA500plus - разгоняем Амигу</media:title>
+   <media:content url="https://www.youtube.com/v/gTRhr6Ut28g?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/gTRhr6Ut28g/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Смотрим, что на Амиге тормозит и как ACA500plus помогает решить эту проблему.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="5668" average="4.95" min="1" max="5"/>
+    <media:statistics views="67541"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:zMkkFtPISWk</id>
+  <yt:videoId>zMkkFtPISWk</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Кремниевые Титаны #25: Ryzen</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=zMkkFtPISWk"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-08-30T08:04:11+00:00</published>
+  <updated>2019-12-26T10:36:10+00:00</updated>
+  <media:group>
+   <media:title>Кремниевые Титаны #25: Ryzen</media:title>
+   <media:content url="https://www.youtube.com/v/zMkkFtPISWk?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/zMkkFtPISWk/hqdefault.jpg" width="480" height="360"/>
+   <media:description>История AMD Ryzen
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="8525" average="4.97" min="1" max="5"/>
+    <media:statistics views="77308"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:0_kG7ZU0PPY</id>
+  <yt:videoId>0_kG7ZU0PPY</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Кремниевые Титаны #24: S3 Graphics</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=0_kG7ZU0PPY"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-07-31T12:46:33+00:00</published>
+  <updated>2019-12-26T10:37:15+00:00</updated>
+  <media:group>
+   <media:title>Кремниевые Титаны #24: S3 Graphics</media:title>
+   <media:content url="https://www.youtube.com/v/0_kG7ZU0PPY?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/0_kG7ZU0PPY/hqdefault.jpg" width="480" height="360"/>
+   <media:description>История производителя видеокарт S3
+P.S. впопыхах забыл уточнить, что, разумеется, на мегабайте видеопамяти можно было прекрасно получить TrueColor в разрешениях вроде 800х600. Имелись в виду существенно более высокие разрешения конечно же.
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="5988" average="4.98" min="1" max="5"/>
+    <media:statistics views="45171"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:Pb-dqODUhXk</id>
+  <yt:videoId>Pb-dqODUhXk</yt:videoId>
+  <yt:channelId>UC5dgoavpIertLkNDDITDoBQ</yt:channelId>
+  <title>Кремниевые Титаны #23: BeOS</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=Pb-dqODUhXk"/>
+  <author>
+   <name>Дмитрий Бачило</name>
+   <uri>https://www.youtube.com/channel/UC5dgoavpIertLkNDDITDoBQ</uri>
+  </author>
+  <published>2019-06-27T10:58:31+00:00</published>
+  <updated>2020-03-07T00:43:11+00:00</updated>
+  <media:group>
+   <media:title>Кремниевые Титаны #23: BeOS</media:title>
+   <media:content url="https://www.youtube.com/v/Pb-dqODUhXk?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/Pb-dqODUhXk/hqdefault.jpg" width="480" height="360"/>
+   <media:description>История операционной системы, опередившей время и породившей неплохое наследние, хотя и не особо получившей признание при жизни
+http://16-bits.ru</media:description>
+   <media:community>
+    <media:starRating count="5974" average="4.98" min="1" max="5"/>
+    <media:statistics views="51043"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>
