@@ -6,10 +6,10 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 
 class Quotes:
-    def __init__(self, authors, text, links, logo, p=1):
+    def __init__(self, authors, text, links, logo):
 
         # инициализируем пути
-        if p != 0:
+        if __name__ == '__main__':
             self.way = 'templates/'
         else:
             self.way = 'picgen/templates/'
@@ -158,5 +158,4 @@ if __name__ == '__main__':
     Quotes("Семён Куфтырев",
            '" я хоть и не танкист,но тебе свой ствол показать могу"© Илья',
            'https://sun9-43.userapi.com/c855628/v855628566/18c21/hhmqGHpyZoE.jpg',
-           'Чилловары',
-           1)
+           'Чилловары')
