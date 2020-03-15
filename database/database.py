@@ -8,9 +8,9 @@ import sqlite3
 
 class Sql:
     # кусок адреса для открываемых файлов и объявление константы
-    def __init__(self, usr_id, way=1):
+    def __init__(self, usr_id):
         self.usr_id = usr_id
-        if way == 0:
+        if __name__ == '__main__':
             self.way = ''
         else:
             self.way = 'database/'
@@ -262,4 +262,4 @@ class Sql:
 
 
 if __name__ == '__main__':
-    Sql(0, way=0).conversation_members(2000000005, 0)
+    Sql(0).conversation_members(2000000005, 0)
