@@ -72,25 +72,6 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=Config.BOGDAN_ANS[ans])
 
-    def sanychcontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'sanychcontrol')
-        random = randint(0, len(Config.SANYCH_ANS) - 1)
-        if random == 2:
-            members = Sql(usr_id).conversation_count(peer_id)
-            r = Sql(usr_id).daily_random(peer_id)
-            duty = int(datetime.now().strftime("%d"))
-            while duty > members - 1:
-                duty /= int(r)
-            member = Sql(usr_id).conversation_members(peer_id, duty)
-            usr_name = f"@id{member[1]}({member[0]})"
-            self.api.messages.send(peer_id=peer_id,
-                                   random_id=randint(0, 512),
-                                   message=f'{Config.SANYCH_ANS[random]} {usr_name}')
-        else:
-            self.api.messages.send(peer_id=peer_id,
-                                   random_id=randint(0, 512),
-                                   message=Config.SANYCH_ANS[random])
-
     def ilyushacontrol(self, usr_id, peer_id):
         self.statistic(peer_id, usr_id, 'ilyushacontrol')
         self.api.messages.send(peer_id=peer_id,
@@ -116,6 +97,12 @@ class VK:
                                random_id=randint(0, 512),
                                message=Config.NWORDS_ANS[randint(0, len(Config.NWORDS_ANS) - 1)])
 
+    def arvikcontrol(self, usr_id, peer_id):
+        self.statistic(peer_id, usr_id, 'arvikcontrol')
+        self.api.messages.send(peer_id=peer_id,
+                               random_id=randint(0, 512),
+                               message=Config.ARVIK_ANS[randint(0, len(Config.ARVIK_ANS) - 1)])
+
     def hi_tube(self, usr_id, peer_id):
         self.statistic(peer_id, usr_id, 'hi_tube')
         self.api.messages.send(peer_id=peer_id,
@@ -127,6 +114,25 @@ class VK:
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message=Config.SHOCK_ANS[randint(0, len(Config.SHOCK_ANS) - 1)])
+
+    def sanychcontrol(self, usr_id, peer_id):
+        self.statistic(peer_id, usr_id, 'sanychcontrol')
+        random = randint(0, len(Config.SANYCH_ANS) - 1)
+        if random == 2:
+            members = Sql(usr_id).conversation_count(peer_id)
+            r = Sql(usr_id).daily_random(peer_id)
+            duty = int(datetime.now().strftime("%d"))
+            while duty > members - 1:
+                duty /= int(r)
+            member = Sql(usr_id).conversation_members(peer_id, duty)
+            usr_name = f"@id{member[1]}({member[0]})"
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message=f'{Config.SANYCH_ANS[random]} {usr_name}')
+        else:
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message=Config.SANYCH_ANS[random])
 
     def gaymetr(self, usr_id, peer_id):
         self.statistic(peer_id, usr_id, 'gaymetr')
@@ -198,6 +204,7 @@ class VK:
         self.statistic(peer_id, usr_id, 'quote')
         self.api.messages.setActivity(type='typing',
                                       peer_id=peer_id)
+        quote_logo = logo(peer_id)
         usr_id = [reply['from_id']]
         text = [reply['text']]
         usr_data = self.api.users.get(user_ids=usr_id, fields='photo_200')
@@ -206,7 +213,7 @@ class VK:
         Quotes(authors=usr_name,
                text=text,
                links=link,
-               logo=logo(peer_id))
+               logo=quote_logo)
         resp = VkUpload(self.session).photo_messages(photos=path.abspath('picgen/templates/quote.png'))
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
@@ -306,6 +313,8 @@ class VK:
                                 self.bogdancontrol(usr_id, peer_id)
                             if any(i in Config.ILYUSHA for i in text):
                                 self.ilyushacontrol(usr_id, peer_id)
+                            if any(i in Config.ARVIK for i in text):
+                                self.arvikcontrol(usr_id, peer_id)
                         if peer_id == Config.CONSOLE_ID:
                             if any(i in ['статистика'] for i in text):
                                 self.stat_return(usr_id)
