@@ -60,15 +60,18 @@ class Youtube:
         for i in range(len(self.cl)):
             img = Image.open(path.abspath(self.way + f'temp/preview{i}.jpg'))
             chords = int((480 - 439) / 2), int((360 - 270) / 2), int((480 + 439) / 2), int((360 + 270) / 2)
-            cropped = img.crop(chords).resize((221 * 2, 136 * 2))
+            cropped = img.crop(chords).resize((221 * 3, 136 * 3))
             cropped.save(path.abspath(self.way + f'temp/preview{i}.jpg'))
 
     def pictures_upload(self):
         url_list = []
+        paths = []
         session = vk_api.VkApi(token=Config.TOKEN, client_secret=Config.TOKEN)
         for i in range(len(self.cl)):
-            resp = VkUpload(session).photo_messages(photos=path.abspath(self.way + f'temp/preview{i}.jpg'))
-            url_list.append(f"{resp[0]['owner_id']}_{resp[0]['id']}")
+            paths.append(path.abspath(self.way + f'temp/preview{i}.jpg'))
+        resp = VkUpload(session).photo_messages(photos=paths)
+        for i in range(len(self.cl)):
+            url_list.append(f"{resp[i]['owner_id']}_{resp[i]['id']}")
         self.img = url_list
 
     def dict_generator(self):
@@ -97,4 +100,4 @@ class Youtube:
 
 
 if __name__ == '__main__':
-    Youtube()
+    Youtube(None)
