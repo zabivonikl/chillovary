@@ -198,7 +198,6 @@ class VK:
         self.statistic(peer_id, usr_id, 'quote')
         self.api.messages.setActivity(type='typing',
                                       peer_id=peer_id)
-        quote_logo = logo(peer_id)
         usr_id = [reply['from_id']]
         text = [reply['text']]
         usr_data = self.api.users.get(user_ids=usr_id, fields='photo_200')
@@ -207,8 +206,7 @@ class VK:
         Quotes(authors=usr_name,
                text=text,
                links=link,
-               logo=quote_logo,
-               p=0)
+               logo=logo(peer_id))
         resp = VkUpload(self.session).photo_messages(photos=path.abspath('picgen/templates/quote.png'))
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
@@ -240,8 +238,7 @@ class VK:
         Quotes(authors=users,
                text=text,
                links=links,
-               logo=quote_logo,
-               p=0)
+               logo=quote_logo)
         resp = VkUpload(self.session).photo_messages(photos=path.abspath('picgen/templates/quote.png'))
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
