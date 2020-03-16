@@ -193,7 +193,7 @@ class Sql:
         text += f'Богданов: {bogdancontrol}\n'
         text += f'Санычей: {sanychcontrol}\n'
         text += f'Илюш: {ilyushacontrol}\n'
-        text += f'Арвиков: {arvik}'
+        text += f'Арвиков: {arvik}\n'
         text += f'Оскорблений: {jestyanka}\n'
         text += f'Гариков: {garikcontrol}\n'
         text += f'Привет, Тюбов: {hi_tube}\n'
