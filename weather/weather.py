@@ -5,27 +5,32 @@ import json
 from config import Config
 
 
-def saver(id):
-    # скачиваем прогноз погоды в json и сохраняем на диск
-    url = f"http://api.openweathermap.org/data/2.5/forecast?id={id}&APPID={Config.TOKEN2}&lang=ru"
-    try:
-        weather = requests.get(url).text.encode('utf-8').decode('utf-8')
-        with open(path.abspath("weather/data/weather_temp.json"), "w") as f:
-            f.write(f"{weather}")
-    except Exception as e:
-        print(f"ошибОЧКА: {e}")
 
 
 class Weather:
     # запускаем загрузчик и объявляем день
     def __init__(self, d, city_id="569223"):
-        saver(city_id)
+        if __name__ == '__main__':
+            self.path = ''
+        else:
+            self.path = 'weather/'
+        self.saver(city_id)
         self.day = int(d)
+
+    def saver(self, id):
+        # скачиваем прогноз погоды в json и сохраняем на диск
+        url = f"http://api.openweathermap.org/data/2.5/forecast?id={id}&APPID={Config.TOKEN2}&lang=ru"
+        try:
+            weather = requests.get(url).text.encode('utf-8').decode('utf-8')
+            with open(path.abspath(self.path + "data/weather_temp.json"), "w") as f:
+                f.write(f"{weather}")
+        except Exception as e:
+            print(f"ошибОЧКА: {e}")
 
     # открываем JSON и возвращем его содержимое
     def data(self):
         try:
-            with open(path.abspath("weather/data/weather_temp.json"), encoding="utf-8") as f:
+            with open(path.abspath(self.path + "data/weather_temp.json"), encoding="cp1251") as f:
                 data = json.load(f)
             return data
         except Exception as e:
@@ -96,6 +101,7 @@ class Weather:
     def wind(self):
         js = self.data()
         wind = {}
+        words = ''
         for i in range(40):
             deg = js["list"][i]["wind"]["deg"]
             speed = js["list"][i]["wind"]["speed"]
@@ -140,38 +146,24 @@ class Weather:
     # данный метод объединяет информацию их вышестоящих методов для дня, передаваемого экземпляру класса
     def day_list(self):
         day_list = []
-        day_list.extend([self.info()[0]]) # 0
-        day_list.extend([self.info()[1]]) # 1 
-        day_list.extend([self.date()[self.day]]) # 2
-        day_list.extend([self.temperature()[self.day]]) # 3
-        day_list.extend([self.min_temp()[self.day]]) # 4
-        day_list.extend([self.max_temp()[self.day]]) # 5
-        day_list.extend([self.feels_like()[self.day]]) # 6
-        day_list.extend([self.pressure()[self.day]]) # 7
-        day_list.extend([self.humidity()[self.day]]) # 8
-        day_list.extend([self.wind()[self.day]]) # 9
-        day_list.extend([self.weather()[self.day]]) # 10
+        day_list.extend([self.info()[0]])  # 0
+        day_list.extend([self.info()[1]])  # 1
+        day_list.extend([self.date()[self.day]])  # 2
+        day_list.extend([self.temperature()[self.day]])  # 3
+        day_list.extend([self.min_temp()[self.day]])  # 4
+        day_list.extend([self.max_temp()[self.day]])  # 5
+        day_list.extend([self.feels_like()[self.day]])  # 6
+        day_list.extend([self.pressure()[self.day]])  # 7
+        day_list.extend([self.humidity()[self.day]])  # 8
+        day_list.extend([self.wind()[self.day]])  # 9
+        day_list.extend([self.weather()[self.day]])  # 10
         return day_list
-
-    # выводит преобразованную информацию для каждого временного промежутка в JSON
-    def all_days(self):
-        print(f"Данные о городе: {self.info()}")
-        for i in range(40):
-            print(f"Дата: {self.date()[i]}")
-            print(f"Температура: {self.temperature()[i]}")
-            print(f"Ощущается как: {self.feels_like()[i]}")
-            print(f"Минимальная: {self.min_temp()[i]}")
-            print(f"Максимальная: {self.max_temp()[i]}")
-            print(f"Давление: {self.pressure()[i]}")
-            print(f"Влажность: {self.humidity()[i]}")
-            print(f"Ветер: {self.wind()[i][2]}")
-            print(f"Облачность: {self.weather()[i][1]}")
-            print()
 
     # возвращает преобразованную информацию из метода day_list
     def returning(self):
         text = f"Данные о городе: {self.info()[0]}, {self.info()[1]}\n\n"
-        text += f"Дата: {str(self.date()[self.day])[8:10]}.{str(self.date()[self.day])[5:7]}.{str(self.date()[self.day])[:4]} {str(self.date()[self.day])[-8:-3]}\n\n"
+        text += f"Дата: {str(self.date()[self.day])[8:10]}.{str(self.date()[self.day])[5:7]}." \
+                f"{str(self.date()[self.day])[:4]} {str(self.date()[self.day])[-8:-3]}\n\n"
         text += f"Температура: {self.temperature()[self.day]}С°\n"
         text += f"Ощущается как: {self.feels_like()[self.day]}С°\n"
         text += f"Минимальная температура: {self.min_temp()[self.day]}С°\n"
@@ -187,12 +179,12 @@ class Weather:
 if __name__ == "__main__":
     print("0 - погода сегодня")
     print("1 - погода на ближайшую неделю")
-    choise = int(input())
-    if choise == 0:
+    choose = int(input())
+    if choose == 0:
         print("Погода сегодня:\n")
-        print(DataConvert(1).returning())
-    elif choise == 1:
+        print(Weather(1).day_list())
+    elif choose == 1:
         print("Погода на ближайшую неделю:")
-        DataConvert(1).all_days()
+        Weather(1).all_days()
     else:
         print("Ошибка ввода")
