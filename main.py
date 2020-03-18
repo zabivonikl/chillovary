@@ -10,6 +10,7 @@ from config import Config, YTConfig, logo
 
 from weather.wallet import Wallets
 from weather.weather import Weather
+from weather.card_generator import CardGenerator
 
 from picgen.picgen import Quotes
 from database.database import Sql
@@ -161,11 +162,13 @@ class VK:
 
     def weather(self, usr_id, peer_id, day=0):
         city_id = Sql(usr_id).find()
-        resp = Weather(day, city_id).returning()
+        resp = Weather(day, city_id).day_list()
+        CardGenerator(resp)
         self.statistic(peer_id, usr_id, 'weather')
+        resp = VkUpload(self.session).photo_messages(photos=path.abspath('weather/picgen/card.png'))
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
-                               message=resp)
+                               attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
     def weather_adding(self, usr_id, message, peer_id):
         self.statistic(peer_id, usr_id, 'weather_adding')
