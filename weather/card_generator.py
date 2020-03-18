@@ -30,7 +30,7 @@ class CardGenerator:
         weather = Image.open(path.abspath(self.path + 'icons/weather.png'))
         wind = Image.open(path.abspath(self.path + 'icons/wind.png'))
         img.paste(loc, (7, 60), loc)
-        img.paste(hum, (52, 740), hum)
+        img.paste(hum, (52, 720), hum)
         img.paste(press, (15, 500), press)
         img.paste(weather, (15, 220), weather)
         img.paste(wind, (15, 370), wind)
@@ -71,7 +71,7 @@ class CardGenerator:
         drawing.text(pressure_position, f'{self.data[7]} мм. рт. ст.', fill=color, font=font1)
 
         humidity_size = font1.getsize(f'{self.data[8]}%')
-        humidity_position = (255, 740 + (194 - humidity_size[1]) / 2)
+        humidity_position = (255, 720 + (194 - humidity_size[1]) / 2)
         drawing.text(humidity_position, f'{self.data[8]}%', fill=color, font=font1)
 
         # возвращаем img
