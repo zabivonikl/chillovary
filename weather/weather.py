@@ -30,7 +30,7 @@ class Weather:
     # открываем JSON и возвращем его содержимое
     def data(self):
         try:
-            with open(path.abspath(self.path + "data/weather_temp.json"), encoding="cp1251") as f:
+            with open(path.abspath(self.path + "data/weather_temp.json"), encoding="utf-8") as f:
                 data = json.load(f)
             return data
         except Exception as e:
