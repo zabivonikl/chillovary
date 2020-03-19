@@ -135,6 +135,12 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=Config.SANYCH_ANS[random])
 
+    def kkcontrol(self, usr_id, peer_id):
+        self.statistic(peer_id, usr_id, 'kkcontrol')
+        self.api.messages.send(peer_id=peer_id,
+                               random_id=randint(0, 512),
+                               message=f'Ваш рост {randint(145, 220)} см')
+
     def gaymetr(self, usr_id, peer_id):
         self.statistic(peer_id, usr_id, 'gaymetr')
         self.api.messages.send(peer_id=peer_id,
@@ -163,12 +169,17 @@ class VK:
     def weather(self, usr_id, peer_id, day=0):
         city_id = Sql(usr_id).find()
         resp = Weather(day, city_id).day_list()
-        CardGenerator(resp)
-        self.statistic(peer_id, usr_id, 'weather')
-        resp = VkUpload(self.session).photo_messages(photos=path.abspath('weather/picgen/card.png'))
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
+        if len(resp) < 10:
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message='Сначала укажите город\n\nДобавь, <название города>')
+        else:
+            CardGenerator(resp)
+            self.statistic(peer_id, usr_id, 'weather')
+            resp = VkUpload(self.session).photo_messages(photos=path.abspath('weather/picgen/card.png'))
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
     def weather_adding(self, usr_id, message, peer_id):
         self.statistic(peer_id, usr_id, 'weather_adding')
@@ -325,6 +336,8 @@ class VK:
                             self.sanychcontrol(usr_id, peer_id)
                         if any(i in Config.GARIK for i in text):
                             self.garikcontrol(usr_id, peer_id)
+                        if any(i in Config.KATYA for i in text):
+                            self.kkcontrol(usr_id, peer_id)
                         if any(i in ['бибаметр'] for i in text):
                             self.bibametr(usr_id, peer_id)
                         if any(i in Config.NWORDS for i in text):
