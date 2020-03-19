@@ -1,4 +1,4 @@
-from random import randint, uniform  # используется в dora
+from random import randint, uniform
 from datetime import datetime
 from os import path
 
@@ -6,11 +6,11 @@ import vk_api
 from vk_api import VkUpload
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
-from config import Config, YTConfig, logo
+from config import Config, logo
 
-from weather.wallet import Wallets
+from wallet.wallet import Info, WalletCardGenerator
 from weather.weather import Weather
-from weather.card_generator import CardGenerator
+from weather.card_generator import WeatherCardGenerator
 
 from picgen.picgen import Quotes
 from database.database import Sql
@@ -174,7 +174,7 @@ class VK:
                                    random_id=randint(0, 512),
                                    message='Сначала укажите город\n\nДобавь, <название города>')
         else:
-            CardGenerator(resp)
+            WeatherCardGenerator(resp)
             self.statistic(peer_id, usr_id, 'weather')
             resp = VkUpload(self.session).photo_messages(photos=path.abspath('weather/picgen/card.png'))
             self.api.messages.send(peer_id=peer_id,
@@ -192,9 +192,12 @@ class VK:
 
     def wallet(self, usr_id, peer_id):
         self.statistic(peer_id, usr_id, 'wallet')
+        data = Info().list_generator()
+        WalletCardGenerator(data)
+        resp = VkUpload(self.session).photo_messages(photos=path.abspath('wallet/cardgenerator/card.png'))
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
-                               message=Wallets().main())
+                               attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
     def calculate(self, usr_id, text, peer_id):
         self.statistic(peer_id, usr_id, 'calculate')
