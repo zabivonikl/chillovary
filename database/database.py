@@ -159,6 +159,7 @@ class Sql:
         garikcontrol = 0
         youtube = 0
         arvik = 0
+        kk = 0
 
         # высчитываем сумму вызовов каждого метода
         for i in range(len(data)):
@@ -184,6 +185,7 @@ class Sql:
             garikcontrol += data[i][22]
             youtube += data[i][23]
             arvik += data[i][24]
+            kk += data[i][25]
 
         # генерируем и возвращаем текст
         text = f'Пидорсчёт: {vladcount}\n'
@@ -194,6 +196,7 @@ class Sql:
         text += f'Санычей: {sanychcontrol}\n'
         text += f'Илюш: {ilyushacontrol}\n'
         text += f'Арвиков: {arvik}\n'
+        text += f'Кать: {kk}\n'
         text += f'Оскорблений: {jestyanka}\n'
         text += f'Гариков: {garikcontrol}\n'
         text += f'Привет, Тюбов: {hi_tube}\n'
