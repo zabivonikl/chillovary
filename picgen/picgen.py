@@ -19,9 +19,9 @@ class Quotes:
         self.text = text
         self.links = links
         self.logo = logo
-        self.head_font = ImageFont.truetype(path.abspath(self.way + 'naming.ttf'), 140)
-        self.author_font = ImageFont.truetype(path.abspath(self.way + 'sig.ttf'), 60)
-        self.text_font = ImageFont.truetype(path.abspath(self.way + 'text.ttf'), 100)
+        self.head_font = ImageFont.truetype(path.abspath(self.way + 'naming.ttf'), 120)
+        self.author_font = ImageFont.truetype(path.abspath(self.way + 'sig.ttf'), 50)
+        self.text_font = ImageFont.truetype(path.abspath(self.way + 'text.ttf'), 75 )
 
         # запускаем алгоритм
         self.main()
@@ -39,22 +39,22 @@ class Quotes:
 
     def dr_background(self):
         # создаём фон
-        background = Image.new('RGB', (1500, 1200))
+        background = Image.new('RGB', (1080, 1080))
 
         # высчитываем ширину полосок с аватарами
         authors_count = len(self.authors)
-        avatar_width = int(1500 / authors_count)
+        avatar_width = int(1080 / authors_count)
 
         # вставляем аватар
         for i in range(authors_count):
             avatar = Image.open(path.abspath(self.way + f'avatar{i}.png'))
-            resized = avatar.crop((0, 20, 200, 180)).resize((1500, 1200))
-            cropped = resized.crop(((1500 - avatar_width) / 2, 0, (1500 + avatar_width) / 2, 1200))
+            resized = avatar.resize((1080, 1080))
+            cropped = resized.crop(((1080 - avatar_width) / 2, 0, (1080 + avatar_width) / 2, 1080))
             background.paste(cropped, (i * avatar_width, 0))
 
         # накладываем фильтр и кавычки
         bw = background.convert('L').filter(ImageFilter.BoxBlur(radius=10))
-        mask = Image.open(path.abspath(self.way + 'black.png'))
+        mask = Image.open(path.abspath(self.way + 'black.png')).resize((1080, 1080))
         bw.paste(mask, (0, 0), mask)
 
         # сохраняемся
@@ -67,7 +67,7 @@ class Quotes:
 
         # получаем размеры и высчитываем позицию
         logo_size = self.head_font.getsize(self.logo)
-        logo_position = (int((1500 - logo_size[0]) / 2), 20)
+        logo_position = (int((1080 - logo_size[0]) / 2), 20)
 
         # рисуем лого
         drawing.text(logo_position, self.logo, fill='#ffffff', font=self.head_font)
@@ -91,7 +91,7 @@ class Quotes:
         # впиисываем авторов
         for i in range(len(self.authors)):
             str_width = self.author_font.getsize(self.authors[i])[0]
-            str_position = (1480 - str_width, 1180 - str_height + max_line_height * i)
+            str_position = (1060 - str_width, 1060 - str_height + max_line_height * i)
             drawing.text(str_position, self.authors[i], fill='#ffffff', font=self.author_font)
 
         # сохраняем
@@ -111,7 +111,7 @@ class Quotes:
         count = 0
         spaces = 0
         for i in range(len(self.text)):
-            formatted = textwrap.fill(self.text[i], width=25)
+            formatted = textwrap.fill(self.text[i], width=21)
             cut_string = formatted.split('\n')
             spaces += 1
             for i in range(len(cut_string)):
@@ -124,17 +124,18 @@ class Quotes:
         line = 0
         spaces = 0
         for a in range(len(self.text)):
-            formatted = textwrap.fill(self.text[a], width=25)
+            formatted = textwrap.fill(self.text[a], width=21)
             cut_string = formatted.split('\n')
             for i in range(len(cut_string)):
                 str_size = self.text_font.getsize(cut_string[i])
-                str_position = ((1500 - str_size[0]) / 2,
-                                (1200 - text_height) / 2 + max_str_height * line + spaces * max_str_height * 0.25)
+                str_position = ((1080 - str_size[0]) / 2,
+                                (1080 - text_height) / 2 + max_str_height * line + spaces * max_str_height * 0.25)
                 line += 1
                 drawing.text(str_position, cut_string[i], fill="#ffffff", font=self.text_font)
             spaces += 1
 
         # сохраняем изображение
+        img = img.convert('RGB')
         img.save(path.abspath(self.way + 'quote.png'))
 
     def main(self):
@@ -157,5 +158,5 @@ class Quotes:
 if __name__ == '__main__':
     Quotes("Семён Куфтырев",
            '" я хоть и не танкист,но тебе свой ствол показать могу"© Илья',
-           'https://sun9-43.userapi.com/c855628/v855628566/18c21/hhmqGHpyZoE.jpg',
+           'http://sun9-43.userapi.com/c855628/v855628566/18c21/hhmqGHpyZoE.jpg',
            'Чилловары')
