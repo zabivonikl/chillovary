@@ -17,6 +17,8 @@ from database.database import Sql
 
 from youtube.youtube_parse import Youtube
 
+from horoscope.horoscope import DataParse
+
 
 class VK:
     """
@@ -224,8 +226,8 @@ class VK:
         quote_logo = logo(peer_id)
         usr_id = [reply['from_id']]
         text = [reply['text']]
-        usr_data = self.api.users.get(user_ids=usr_id, fields='photo_200')
-        link = [usr_data[0]['photo_200']]
+        usr_data = self.api.users.get(user_ids=usr_id, fields='photo_max_orig')
+        link = [usr_data[0]['photo_max_orig']]
         usr_name = [f"{usr_data[0]['first_name']} {usr_data[0]['last_name']}"]
         Quotes(authors=usr_name,
                text=text,
@@ -251,9 +253,9 @@ class VK:
         users = []
         text = []
         usr_data = self.api.users.get(user_ids=str(ids)[1:-1].replace(" ", ""),
-                                      fields='photo_200')
+                                      fields='photo_max_orig')
         for i in range(len(usr_data)):
-            links.append(usr_data[i]['photo_200'])
+            links.append(usr_data[i]['photo_max_orig'])
             author = f"{usr_data[i]['first_name']} {usr_data[i]['last_name']}"
             users.append(author)
         for i in range(len(reply)):
@@ -299,6 +301,28 @@ class VK:
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message='Каналы успешно добавлены')
+
+    def horoscope(self, usr_id, peer_id, text):
+        self.statistic(peer_id, usr_id, 'horoscope')
+        self.api.messages.send(peer_id=peer_id,
+                               random_id=randint(0, 512),
+                               message=f'Гороскоп {text}\n\n{DataParse(text)}')
+
+    def coin(self, usr_id, peer_id):
+        self.statistic(peer_id, usr_id, 'horoscope')
+        random = randint(0, 100)
+        if random in range(0, 49):
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message='Выпала решка')
+        elif random == 100:
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message='Монета упала на ребро')
+        else:
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message='Выпал орёл')
 
     def main(self):
         self.api.messages.send(peer_id=Config.CONSOLE_ID,   # сообщаем о запуске бота в консоль
@@ -379,6 +403,10 @@ class VK:
                             self.dora(usr_id, peer_id)
                         if any(i in Config.YOUTUBE for i in text):
                             self.youtube(usr_id, peer_id)
+                        if any(i in Config.HOROSCOPE for i in event.object['message']['text'].lower().split(', ')):
+                            self.horoscope(usr_id, peer_id, event.object['message']['text'].lower().split(', ')[1])
+                        if any(i in Config.COIN for i in text):
+                            self.coin(usr_id, peer_id)
                         if any(i in 'каналы' for i in event.object['message']['text'].lower().split(';')):
                             self.channels_adding(usr_id, peer_id, event.object['message']['text'].split(';')[1])
                         if any(i in Config.HELP for i in text):
