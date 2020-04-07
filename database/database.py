@@ -2,7 +2,6 @@ from os import path
 from datetime import datetime
 from random import randint
 
-from transliterate import translit
 import sqlite3
 
 
@@ -17,28 +16,27 @@ class Sql:
 
     # поиск id города в БД по VK ID
     def find(self):
-        with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
-            curs = conn.cursor()
-            curs.execute(f'''SELECT OW_ID FROM VK WHERE VK_ID="{self.usr_id}"''')
-            ow_id = str(curs.fetchone()[0])
-        return ow_id
+        try:
+            with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
+                curs = conn.cursor()
+                curs.execute(f'''SELECT lat, lon FROM VK WHERE VK_ID="{self.usr_id}"''')
+                return curs.fetchone()
+        except Exception as e:
+            return f'Вероятно, вас ещё нет в БД. Укажите свой город.\n\nОшибка: {e}'
 
     # смена id города у пользователя
-    def add(self, city):
+    def add(self, chords):
         try:
             # открываем БД
             with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
                 curs = conn.cursor()
 
-                # вытаскиваем id города
-                curs.execute(F'''SELECT OW_ID FROM Cities WHERE CityName_RU="{city}"''')
-                usr_city = curs.fetchone()[0]
-
-                # запизиваем id города в пару к VK id
-                curs.execute(f'''INSERT INTO VK ('VK_ID', 'OW_ID') VALUES ("{self.usr_id}", "{usr_city}")''')
+                # запизиваем координаты в пару к VK id
+                curs.execute(f'''INSERT INTO VK ('VK_ID', 'lat', 'lon') VALUES ("{self.usr_id}",
+                                                                                "{chords[0]}", "{chords[1]}")''')
         except Exception as e:
-            return f'Неудачная попытка\nПричина: {e}\n\nВероятно, вашего города нет в списке.'
-        return f'ID вашего города: {usr_city}'
+            return f'Вероятно, Антон мудак.\n\nКод ошибки: {e}'
+        return f'Координаты успешно добавлены! Напишите "Погода"'
 
     def statistic(self, peer_id, method, user_name):
         # смотрим, есть ли пользователь в таблице
@@ -55,16 +53,19 @@ class Sql:
                 curs = conn.cursor()
 
                 # достаём предыдущее значение и прибавляем 1
-                curs.execute(f'''SELECT {method} FROM Statistic WHERE (peer_id, usr_id) = ("{peer_id}", "{self.usr_id}")''')
+                curs.execute(f'''SELECT {method} FROM Statistic
+                                 WHERE (peer_id, usr_id) = ("{peer_id}", "{self.usr_id}")''')
                 count = curs.fetchone()[0] + 1
 
                 # запихуеваем новое значение в таблицу
-                curs.execute(f'''UPDATE Statistic SET ({method}, user_name) = ("{count}", "{user_name}") WHERE (peer_id, usr_id) = ("{peer_id}", "{self.usr_id}")''')
+                curs.execute(f'''UPDATE Statistic SET ({method}, user_name) = ("{count}", "{user_name}")
+                                 WHERE (peer_id, usr_id) = ("{peer_id}", "{self.usr_id}")''')
         else:
             # если значения в таблице нет, то создаём новую строку
             with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
                 curs = conn.cursor()
-                curs.execute(f'''INSERT INTO Statistic (usr_id, peer_id, {method}, user_name) VALUES ("{self.usr_id}", "{peer_id}", "{1}", "{user_name}")''')
+                curs.execute(f'''INSERT INTO Statistic (usr_id, peer_id, {method}, user_name) VALUES
+                                 ("{self.usr_id}", "{peer_id}", "{1}", "{user_name}")''')
 
     # сегодня дежурит...
     def conversation_members(self, peer_id, duty):
@@ -119,105 +120,16 @@ class Sql:
                 random = randint(2, 6)
                 with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
                     curs = conn.cursor()
-                    curs.execute(f'''UPDATE daily_random SET (randomint, time)=("{random}", "{time}") WHERE peer_id="{peer_id}"''')
+                    curs.execute(f'''UPDATE daily_random SET (randomint, time)=("{random}", "{time}")
+                                     WHERE peer_id="{peer_id}"''')
                     return random
         else:
 
             # добавляем диалог в БД
             with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
                 curs = conn.cursor()
-                curs.execute(f'''INSERT INTO daily_random (peer_id, randomint) VALUES ("{peer_id}", "{randint(2, 6)}")''')
-
-    # статистика
-    def peer_ids(self):
-        # достаём все значения из таблицы
-        with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
-            curs = conn.cursor()
-            curs.execute('''SELECT * FROM Statistic''')
-            data = curs.fetchall()
-
-        # обнуляем переменные
-        vladcount = 0
-        veruchkacontrol = 0
-        lenuhacontrol = 0
-        fizichkacontrol = 0
-        bogdancontrol = 0
-        sanychcontrol = 0
-        jestyanka = 0
-        hi_tube = 0
-        shock = 0
-        gaymetr = 0
-        bibametr = 0
-        weather = 0
-        weather_adding = 0
-        wallet = 0
-        calculate = 0
-        help = 0
-        quote = 0
-        dora = 0
-        ilyushacontrol = 0
-        garikcontrol = 0
-        youtube = 0
-        arvik = 0
-        kk = 0
-
-        # высчитываем сумму вызовов каждого метода
-        for i in range(len(data)):
-            vladcount += data[i][3]
-            veruchkacontrol += data[i][4]
-            lenuhacontrol += data[i][5]
-            fizichkacontrol += data[i][6]
-            bogdancontrol += data[i][7]
-            sanychcontrol += data[i][8]
-            jestyanka += data[i][9]
-            hi_tube += data[i][10]
-            gaymetr += data[i][11]
-            bibametr += data[i][12]
-            weather += data[i][13]
-            weather_adding += data[i][14]
-            wallet += data[i][15]
-            calculate += data[i][16]
-            help += data[i][17]
-            quote += data[i][18]
-            dora += data[i][19]
-            shock += data[i][20]
-            ilyushacontrol += data[i][21]
-            garikcontrol += data[i][22]
-            youtube += data[i][23]
-            arvik += data[i][24]
-            kk += data[i][25]
-
-        # генерируем и возвращаем текст
-        text = f'Пидорсчёт: {vladcount}\n'
-        text += f'Веручек: {veruchkacontrol}\n'
-        text += f'Ленух: {lenuhacontrol}\n'
-        text += f'Физичек: {fizichkacontrol}\n'
-        text += f'Богданов: {bogdancontrol}\n'
-        text += f'Санычей: {sanychcontrol}\n'
-        text += f'Илюш: {ilyushacontrol}\n'
-        text += f'Арвиков: {arvik}\n'
-        text += f'Кать: {kk}\n'
-        text += f'Оскорблений: {jestyanka}\n'
-        text += f'Гариков: {garikcontrol}\n'
-        text += f'Привет, Тюбов: {hi_tube}\n'
-        text += f'Ээ: {shock}\n'
-        text += f'Гейметров: {gaymetr}\n'
-        text += f'Бибаметров: {bibametr}\n'
-        text += f'Дор: {dora}\n'
-        text += f'Ютаров: {youtube}\n'
-        text += f'Запросов погод: {weather}\n'
-        text += f'Смен города: {weather_adding}\n'
-        text += f'Запросов курсов валют: {wallet}\n'
-        text += f'Калькуляторов: {calculate}\n'
-        text += f'Вызовов справки: {help}\n'
-        text += f'Цитат: {quote}\n'
-        return text
-
-    # позволяет добавлять рускоязычное название города в таблицу
-    def add_city(self, city_en, city_ru):
-        with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
-            curs = conn.cursor()
-            curs.execute(f'''UPDATE Cities SET CityName_RU="{city_ru}" WHERE CityName_EN="{city_en}"''')
+                curs.execute(f'''INSERT INTO daily_random (peer_id, randomint) VALUES
+                                 ("{peer_id}", "{randint(2, 6)}")''')
 
     def vlad_count(self, peer_id):
         with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
@@ -257,15 +169,9 @@ class Sql:
             with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
                 curs = conn.cursor()
                 curs.execute(f'''INSERT INTO youtube (usr_id) VALUES ("{self.usr_id}")''')
-            with sqlite3.connect(path.abspath(self.way + 'CityAndVk.db')) as conn:
-                curs = conn.cursor()
                 curs.execute(f'''SELECT * FROM youtube WHERE usr_id = "{self.usr_id}"''')
                 channels = curs.fetchall()[0]
                 for i in range(1, len(channels)):
                     if channels[i] is not None:
                         channel_list.append(channels[i])
             return channel_list
-
-
-if __name__ == '__main__':
-    Sql(0).conversation_members(2000000005, 0)
