@@ -1,4 +1,4 @@
-from random import randint, uniform
+from random import randint
 from datetime import datetime
 from os import path
 
@@ -19,6 +19,8 @@ from youtube.youtube_parse import Youtube
 
 from horoscope.horoscope import DataParse
 
+from mafia.mafia import Mafia
+
 
 class VK:
     """
@@ -31,14 +33,22 @@ class VK:
         self.api = self.session.get_api()
         self.main()  # запуск основного цикла
 
+    def universal(self, peer_id, answers):
+        self.api.messages.send(peer_id=peer_id,
+                               random_id=randint(0, 512),
+                               message=answers[randint(0, len(answers) - 1)])
+
     def vladcount(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'vladcount')
+        response = self.api.users.get(user_ids=usr_id)
+        usr_name = f"{response[0]['first_name']} {response[0]['last_name']}"
+        Sql(usr_id).statistic(peer_id=peer_id,
+                              method='vladcount',
+                              user_name=usr_name)
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message=f'Насчитано {Sql(usr_id).vlad_count(peer_id)} пидорасов')
 
-    def veruchkacontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'veruchkacontrol')
+    def veruchkacontrol(self, peer_id):
         random = randint(0, len(Config.VERA_ANS) - 1)
         if random == 2:
             resp = VkUpload(self.session).photo_messages(photos=path.abspath('media/photos/parvin.jpg'))
@@ -50,20 +60,7 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=Config.VERA_ANS[random])
 
-    def lenuhacontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'lenuhacontrol')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.LENUHA_ANS[randint(0, len(Config.LENUHA_ANS) - 1)])
-
-    def fizichkacontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'fizichkacontrol')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.FIZIVHKA_ANS[randint(0, len(Config.FIZIVHKA_ANS) - 1)])
-
-    def bogdancontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'bogdancontrol')
+    def bogdancontrol(self, peer_id):
         ans = randint(0, len(Config.BOGDAN_ANS) - 1)
         if ans == 1:
             resp = VkUpload(self.session).photo_messages(photos=path.abspath('media/photos/jungle.jpg'))
@@ -75,14 +72,7 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=Config.BOGDAN_ANS[ans])
 
-    def ilyushacontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'ilyushacontrol')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.ILYUSHA_ANS[randint(0, len(Config.ILYUSHA_ANS) - 1)])
-
     def garikcontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'garikcontrol')
         response = self.api.users.get(user_ids=usr_id)
         usr_name = f"@id{usr_id} ({response[0]['first_name']} {response[0]['last_name']})"
         if randint(0, 1) == 1:
@@ -94,32 +84,7 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=f'Сегодня {usr_name} счастливчик! Он не поймал гарик')
 
-    def jestyanka(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'jestyanka')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.NWORDS_ANS[randint(0, len(Config.NWORDS_ANS) - 1)])
-
-    def arvikcontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'arvikcontrol')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.ARVIK_ANS[randint(0, len(Config.ARVIK_ANS) - 1)])
-
-    def hi_tube(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'hi_tube')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.HI_TUBE_ANS[randint(0, len(Config.HI_TUBE_ANS) - 1)])
-
-    def shock(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'shock')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.SHOCK_ANS[randint(0, len(Config.SHOCK_ANS) - 1)])
-
     def sanychcontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'sanychcontrol')
         random = randint(0, len(Config.SANYCH_ANS) - 1)
         if random == 2:
             members = Sql(usr_id).conversation_count(peer_id)
@@ -137,20 +102,7 @@ class VK:
                                    random_id=randint(0, 512),
                                    message=Config.SANYCH_ANS[random])
 
-    def kkcontrol(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'kkcontrol')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=f'Ваш рост {randint(145, 220)} см')
-
-    def gaymetr(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'gaymetr')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=f'Вы гей на {randint(0, 250)} владов из 250')
-
     def bibametr(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'bibametr')
         response = self.api.users.get(user_ids=usr_id,
                                       fields='sex')
         sex = int(response[0]['sex'])
@@ -169,31 +121,34 @@ class VK:
                                    message=f'Сначала скажи что у тебя мерять, TRANSJENDA (укажите в вк пол)')
 
     def weather(self, usr_id, peer_id, day=0):
-        city_id = Sql(usr_id).find()
-        resp = Weather(day, city_id).day_list()
-        if len(resp) < 10:
+        chords = Sql(usr_id).find()
+        resp = Weather(day, chords).day_list()
+        if resp[9] is None:
             self.api.messages.send(peer_id=peer_id,
                                    random_id=randint(0, 512),
-                                   message='Сначала укажите город\n\nДобавь, <название города>')
+                                   message='Сначала укажите свою геопозицию')
         else:
             WeatherCardGenerator(resp)
-            self.statistic(peer_id, usr_id, 'weather')
             resp = VkUpload(self.session).photo_messages(photos=path.abspath('weather/picgen/card.png'))
             self.api.messages.send(peer_id=peer_id,
                                    random_id=randint(0, 512),
                                    attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
-    def weather_adding(self, usr_id, message, peer_id):
-        self.statistic(peer_id, usr_id, 'weather_adding')
-        usr_id = message['from_id']
-        city = message['text'].split(',')[1].replace(' ', '').capitalize()
-        resp = Sql(usr_id).add(city)
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=resp)
+    def weather_adding(self, message, peer_id):
+        if message['geo'] is not None:
+            usr_id = message['from_id']
+            chords = (round(message['geo']['coordinates']['latitude'], 2),
+                      round(message['geo']['coordinates']['longitude'], 2))
+            resp = Sql(usr_id).add(chords)
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message=resp)
+        else:
+            self.api.messages.send(peer_id=peer_id,
+                                   random_id=randint(0, 512),
+                                   message='Прикрепите свою геопозицию, чтобы я знал, куда присылать прогноз погоды')
 
-    def wallet(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'wallet')
+    def wallet(self, peer_id):
         data = Info().list_generator()
         WalletCardGenerator(data)
         resp = VkUpload(self.session).photo_messages(photos=path.abspath('wallet/cardgenerator/card.png'))
@@ -201,26 +156,12 @@ class VK:
                                random_id=randint(0, 512),
                                attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
-    def calculate(self, usr_id, text, peer_id):
-        self.statistic(peer_id, usr_id, 'calculate')
+    def calculate(self, text, peer_id):
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message=f'Ответ: {eval(text)}')
 
-    def dora(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'dora')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=f'Ваш IQ: {round(uniform(-10, 6) ** 3, 2)}')
-
-    def help(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'help')
-        self.api.messages.send(peer_id=peer_id,
-                               random_id=randint(0, 512),
-                               message=Config.HELP_ANS)
-
-    def quote_repl(self, usr_id, reply, peer_id):
-        self.statistic(peer_id, usr_id, 'quote')
+    def quote_repl(self, reply, peer_id):
         self.api.messages.setActivity(type='typing',
                                       peer_id=peer_id)
         quote_logo = logo(peer_id)
@@ -239,8 +180,7 @@ class VK:
                                message='Цитатка...',
                                attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
-    def quote_fwr(self, usr_id, reply, peer_id):
-        self.statistic(peer_id, usr_id, 'quote')
+    def quote_fwr(self, reply, peer_id):
         self.api.messages.setActivity(type='typing',
                                       peer_id=peer_id)
         quote_logo = logo(peer_id)
@@ -271,22 +211,7 @@ class VK:
                                message='Цитатка...',
                                attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
-    def statistic(self, peer_id, usr_id, method):
-        response = self.api.users.get(user_ids=usr_id)
-        usr_name = f"{response[0]['first_name']} {response[0]['last_name']}"
-        Sql(usr_id).statistic(peer_id=peer_id,
-                              method=method,
-                              user_name=usr_name)
-
-    def stat_return(self, usr_id):
-        resp = "ℹСтатистика бота\n\n"
-        resp += Sql(usr_id).peer_ids()
-        self.api.messages.send(peer_id=Config.CONSOLE_ID,
-                               random_id=randint(0, 512),
-                               message=resp)
-
     def youtube(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'youtube')
         url_list = Sql(usr_id).channels_getting()
         template = str(Youtube(url_list).dict_generator()).replace("'", '"')
         self.api.messages.send(peer_id=peer_id,
@@ -295,21 +220,18 @@ class VK:
                                template=template)
 
     def channels_adding(self, usr_id, peer_id, text):
-        self.statistic(peer_id, usr_id, 'channel_adding')
         url_list = text.replace("https://www.youtube.com/channel/", "").replace(' ', '').split(",")
         Sql(usr_id).channels_adding(url_list)
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message='Каналы успешно добавлены')
 
-    def horoscope(self, usr_id, peer_id, text):
-        self.statistic(peer_id, usr_id, 'horoscope')
+    def horoscope(self, peer_id, text):
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message=f'Гороскоп {text}\n\n{DataParse(text)}')
 
-    def coin(self, usr_id, peer_id):
-        self.statistic(peer_id, usr_id, 'horoscope')
+    def coin(self, peer_id):
         random = randint(0, 100)
         if random in range(0, 49):
             self.api.messages.send(peer_id=peer_id,
@@ -323,6 +245,18 @@ class VK:
             self.api.messages.send(peer_id=peer_id,
                                    random_id=randint(0, 512),
                                    message='Выпал орёл')
+
+    @staticmethod
+    def mafia(usr_id, peer_id, text):
+        Mafia(text.strip(), peer_id, usr_id)
+
+    def roflan(self, peer_id, text):
+        for i in text:
+            if i in Config.ROFLAN:
+                resp = VkUpload(self.session).photo_messages(photos=path.abspath(f'roflan/{i}.png'))
+                self.api.messages.send(peer_id=peer_id,
+                                       random_id=randint(0, 512),
+                                       attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
     def main(self):
         self.api.messages.send(peer_id=Config.CONSOLE_ID,   # сообщаем о запуске бота в консоль
@@ -345,36 +279,42 @@ class VK:
                             if any(i in Config.VLAD for i in text):
                                 self.vladcount(usr_id, peer_id)
                             if any(i in Config.VERA for i in text):
-                                self.veruchkacontrol(usr_id, peer_id)
+                                self.veruchkacontrol(peer_id)
                             if any(i in Config.LENUHA for i in text):
-                                self.lenuhacontrol(usr_id, peer_id)
+                                self.universal(peer_id, Config.LENUHA_ANS)
                             if any(i in Config.FIZIVHKA for i in text):
-                                self.fizichkacontrol(usr_id, peer_id)
+                                self.universal(peer_id, Config.FIZIVHKA_ANS)
                             if any(i in Config.BOGDAN for i in text):
-                                self.bogdancontrol(usr_id, peer_id)
+                                self.bogdancontrol(peer_id)
                             if any(i in Config.ILYUSHA for i in text):
-                                self.ilyushacontrol(usr_id, peer_id)
+                                self.universal(peer_id, Config.ILYUSHA_ANS)
                             if any(i in Config.ARVIK for i in text):
-                                self.arvikcontrol(usr_id, peer_id)
-                        if peer_id == Config.CONSOLE_ID:
-                            if any(i in ['статистика'] for i in text):
-                                self.stat_return(usr_id)
+                                self.universal(peer_id, Config.ARVIK_ANS)
                         if any(i in Config.SANYCH for i in text):
                             self.sanychcontrol(usr_id, peer_id)
                         if any(i in Config.GARIK for i in text):
                             self.garikcontrol(usr_id, peer_id)
                         if any(i in Config.KATYA for i in text):
-                            self.kkcontrol(usr_id, peer_id)
+                            self.universal(peer_id, Config.KATYA_ANS)
                         if any(i in ['бибаметр'] for i in text):
                             self.bibametr(usr_id, peer_id)
                         if any(i in Config.NWORDS for i in text):
-                            self.jestyanka(usr_id, peer_id)
-                        if any(i in ['гейметр'] for i in text):
-                            self.gaymetr(usr_id, peer_id)
+                            self.universal(peer_id, Config.NWORDS_ANS)
+                        if any(i in Config.GAYMETR for i in text):
+                            self.universal(peer_id, Config.GAYMETR_ANS)
                         if any(i in Config.HI_TUBE for i in text):
-                            self.hi_tube(usr_id, peer_id)
+                            self.universal(peer_id, Config.HI_TUBE_ANS)
                         if any(i in Config.SHOCK for i in text):
-                            self.shock(usr_id, peer_id)
+                            self.universal(peer_id, Config.SHOCK_ANS)
+                        if any(i in Config.NANDOMO for i in text):
+                            self.universal(peer_id, Config.NANDOMO_ANS)
+                        if any(i in Config.MAFIA for i in event.object['message']['text']
+                                .replace('[club177983601|@kalianka_flex]', "мафия,")
+                                .replace("[club177983601|Чилловары]", "мафия,").lower().split(',')):
+                            self.mafia(usr_id, peer_id,
+                                       event.object['message']['text']
+                                       .replace('[club177983601|@kalianka_flex]', "мафия,")
+                                       .replace("[club177983601|Чилловары]", "мафия,").lower().split(',')[1])
                         # у погоды множество вариаций синтаксиса, поэтому требуется смотреть тип элемента и
                         # отталкиваться от его типа
                         if event.object['message']['text'].lower() in Config.WEATHER:
@@ -391,33 +331,34 @@ class VK:
                             elif event.object['message']['text'].lower().split(', ')[1] == 'послезавтра':
                                 day = 16
                                 self.weather(usr_id, peer_id, day)
-                        if any(i in ['добавь'] for i in event.object['message']['text'].lower().split(',')):
-                            self.weather_adding(usr_id, event.object['message'], peer_id)
+                        if any(i in ['геопозиция'] for i in text):
+                            self.weather_adding(event.object['message'], peer_id)
                         if any(i in Config.WALLET for i in text):
-                            self.wallet(usr_id, peer_id)
+                            self.wallet(peer_id)
                         if any(i in Config.CALCULATE for i in event.object['message']['text'].lower().split(',')):
-                            self.calculate(usr_id=usr_id,
-                                           text=event.object['message']['text'].lower().split(',')[1],
+                            self.calculate(text=event.object['message']['text'].lower().split(',')[1],
                                            peer_id=peer_id)
                         if any(i in Config.DORA for i in text):
-                            self.dora(usr_id, peer_id)
+                            self.universal(peer_id, Config.DORA_ANS)
                         if any(i in Config.YOUTUBE for i in text):
                             self.youtube(usr_id, peer_id)
                         if any(i in Config.HOROSCOPE for i in event.object['message']['text'].lower().split(', ')):
-                            self.horoscope(usr_id, peer_id, event.object['message']['text'].lower().split(', ')[1])
+                            self.horoscope(peer_id, event.object['message']['text'].lower().split(', ')[1])
                         if any(i in Config.COIN for i in text):
-                            self.coin(usr_id, peer_id)
+                            self.coin(peer_id)
                         if any(i in 'каналы' for i in event.object['message']['text'].lower().split(';')):
                             self.channels_adding(usr_id, peer_id, event.object['message']['text'].split(';')[1])
                         if any(i in Config.HELP for i in text):
-                            self.help(usr_id=usr_id, peer_id=peer_id)
+                            self.universal(peer_id, Config.HELP_ANS)
+                        if any(i in Config.ROFLAN for i in text):
+                            self.roflan(peer_id, text)
                         # у цитат тоже есть несколько вариаций, поэтому требуется прописать 2 проверки для запуска
                         # одной и той же функции
                         if any(i in Config.QUOTE for i in text) and 'reply_message' in event.object['message']:
-                            self.quote_repl(usr_id, event.object['message']['reply_message'], peer_id)
+                            self.quote_repl(event.object['message']['reply_message'], peer_id)
                         elif 'from_id' in event.object['message']['fwd_messages'][0] and\
                                 any(i in Config.QUOTE for i in text):
-                            self.quote_fwr(usr_id, event.object['message']['fwd_messages'], peer_id)
+                            self.quote_fwr(event.object['message']['fwd_messages'], peer_id)
             except IndexError:  # игнорируем index errors
                 pass
             except Exception as e:  # говорим роботу, чтоб отправлял ошибки в консольный диалог
