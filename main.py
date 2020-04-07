@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, uniform
 from datetime import datetime
 from os import path
 
@@ -36,7 +36,10 @@ class VK:
     def universal(self, peer_id, answers):
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
-                               message=answers[randint(0, len(answers) - 1)])
+                               message=answers[randint(0, len(answers) - 1)]
+                               .replace("%u", f'{round(uniform(-1000, 250), 2)}')
+                               .replace('%i', f'{randint(0, 250)}')
+                               .replace("%d", f'{randint(0, 210)}'))
 
     def vladcount(self, usr_id, peer_id):
         response = self.api.users.get(user_ids=usr_id)
@@ -295,13 +298,13 @@ class VK:
                         if any(i in Config.GARIK for i in text):
                             self.garikcontrol(usr_id, peer_id)
                         if any(i in Config.KATYA for i in text):
-                            self.universal(peer_id, Config.KATYA_ANS)
+                            self.universal(peer_id, Config.katya_ans)
                         if any(i in ['бибаметр'] for i in text):
                             self.bibametr(usr_id, peer_id)
                         if any(i in Config.NWORDS for i in text):
                             self.universal(peer_id, Config.NWORDS_ANS)
                         if any(i in Config.GAYMETR for i in text):
-                            self.universal(peer_id, Config.GAYMETR_ANS)
+                            self.universal(peer_id, Config.gaymetr_ans)
                         if any(i in Config.HI_TUBE for i in text):
                             self.universal(peer_id, Config.HI_TUBE_ANS)
                         if any(i in Config.SHOCK for i in text):
@@ -339,7 +342,7 @@ class VK:
                             self.calculate(text=event.object['message']['text'].lower().split(',')[1],
                                            peer_id=peer_id)
                         if any(i in Config.DORA for i in text):
-                            self.universal(peer_id, Config.DORA_ANS)
+                            self.universal(peer_id, Config.dora_ans)
                         if any(i in Config.YOUTUBE for i in text):
                             self.youtube(usr_id, peer_id)
                         if any(i in Config.HOROSCOPE for i in event.object['message']['text'].lower().split(', ')):
