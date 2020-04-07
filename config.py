@@ -56,10 +56,10 @@ class Config:
                  'В душе простые,\nНи на кого не похожие.']
 
     KATYA = ['кк', 'королёва', 'катя', 'рост']
-    KATYA_ANS = [f'Ваш рост {randint(145, 220)} см']
+    katya_ans = [f'Ваш рост %d см']
 
     GAYMETR = ['гейметр']
-    GAYMETR_ANS = [f'Вы гей на {randint(0, 250)} владов из 250']
+    gaymetr_ans = ['Вы гей на %i владов из 250']
 
     GARIK = ['гарик']
 
@@ -83,7 +83,7 @@ class Config:
     CALCULATE = ['калькулятор', 'посчитай']
 
     DORA = ['дора', 'айкью', 'айсикью']
-    DORA_ANS = [f'Ваш IQ: {round(uniform(-10, 6) ** 3, 2)}']
+    dora_ans = ['Ваш IQ: %u']
 
     QUOTE = ['цитата', 'цитатник']
 
@@ -96,7 +96,12 @@ class Config:
     MAFIA = ['мафия']
 
     ROFLAN = ['roflanebalo', 'roflanpominki', 'roflanbuldiga', 'roflancontent', 'roflanpomoika', 'roflanzdarova',
-              'roflanhmm', 'roflantsar', 'roflantigran']
+              'roflanhmm', 'roflantsar', 'roflantigran', 'roflanbatya', 'roflanboec', 'roflanchelik', 'roflandodik',
+              'roflandoter', 'roflandovolen', 'roflandulya', 'roflandurachok', 'roflanexalted', 'roflanfingal',
+              'roflangorit', 'roflanhater', 'roflanhiddenpool', 'roflankoi', 'roflanmicro', 'roflannewebalo',
+              'roflannoname', 'roflanold', 'roflanoru', 'roflanpapich', 'roflanplz', 'roflanpoebalo', 'roflanrabotyaga',
+              'roflanslogna', 'roflanspy', 'roflantrashater', 'roflanumnik', 'roflanvglorius', 'roflanwitcher',
+              'roflanwtfebat', 'roflanyasno', 'roflanzachto', 'roflanzloy', 'roflaneblan']
 
     HELP = ['помощь', 'справка']
     HELP_ANS = 'Справка по командам\n\n' \
