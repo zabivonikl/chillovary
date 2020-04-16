@@ -21,6 +21,8 @@ from horoscope.horoscope import DataParse
 
 from mafia.mafia import Mafia
 
+from distortion.distortion import Distortion
+
 
 class VK:
     """
@@ -39,7 +41,8 @@ class VK:
                                message=answers[randint(0, len(answers) - 1)]
                                .replace("%u", f'{round(uniform(-1000, 250), 2)}')
                                .replace('%i', f'{randint(0, 250)}')
-                               .replace("%d", f'{randint(0, 210)}'))
+                               .replace("%d", f'{randint(0, 210)}')
+                               .replace('%l', f'{randint(0, 999999)}'))
 
     def vladcount(self, usr_id, peer_id):
         response = self.api.users.get(user_ids=usr_id)
@@ -170,8 +173,8 @@ class VK:
         quote_logo = logo(peer_id)
         usr_id = [reply['from_id']]
         text = [reply['text']]
-        usr_data = self.api.users.get(user_ids=usr_id, fields='photo_max_orig')
-        link = [usr_data[0]['photo_max_orig']]
+        usr_data = self.api.users.get(user_ids=usr_id, fields='photo_max')
+        link = [usr_data[0]['photo_max']]
         usr_name = [f"{usr_data[0]['first_name']} {usr_data[0]['last_name']}"]
         Quotes(authors=usr_name,
                text=text,
@@ -196,9 +199,9 @@ class VK:
         users = []
         text = []
         usr_data = self.api.users.get(user_ids=str(ids)[1:-1].replace(" ", ""),
-                                      fields='photo_max_orig')
+                                      fields='photo_max')
         for i in range(len(usr_data)):
-            links.append(usr_data[i]['photo_max_orig'])
+            links.append(usr_data[i]['photo_max'])
             author = f"{usr_data[i]['first_name']} {usr_data[i]['last_name']}"
             users.append(author)
         for i in range(len(reply)):
@@ -212,6 +215,19 @@ class VK:
         self.api.messages.send(peer_id=peer_id,
                                random_id=randint(0, 512),
                                message='Цитатка...',
+                               attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
+
+    def dist(self, peer_id, message):
+        if message['attachments'][0]['type'] == 'photo':
+            length = len(message['attachments'][0]['photo']['sizes']) - 1
+            url = message['attachments'][0]['photo']['sizes'][length]['url']
+        else:
+            url = self.api.users.get(message['from_id'], fields='photo_max')[0]['photo_max']
+        Distortion(url)
+        resp = VkUpload(self.session).photo_messages(photos=path.abspath('distortion/picture.jpg'))
+        self.api.messages.send(peer_id=peer_id,
+                               random_id=randint(0, 512),
+                               message='Сжал...',
                                attachment=f"photo{resp[0]['owner_id']}_{resp[0]['id']}")
 
     def youtube(self, usr_id, peer_id):
@@ -309,6 +325,8 @@ class VK:
                             self.universal(peer_id, Config.HI_TUBE_ANS)
                         if any(i in Config.SHOCK for i in text):
                             self.universal(peer_id, Config.SHOCK_ANS)
+                        if any(i in Config.SIGA for i in text):
+                            self.universal(peer_id, Config.SIGA_ANS)
                         if any(i in Config.NANDOMO for i in text):
                             self.universal(peer_id, Config.NANDOMO_ANS)
                         if any(i in Config.MAFIA for i in event.object['message']['text']
@@ -355,6 +373,8 @@ class VK:
                             self.universal(peer_id, Config.HELP_ANS)
                         if any(i in Config.ROFLAN for i in text):
                             self.roflan(peer_id, text)
+                        if any(i in Config.DISTORTION for i in text):
+                            self.dist(peer_id, event.object['message'])
                         # у цитат тоже есть несколько вариаций, поэтому требуется прописать 2 проверки для запуска
                         # одной и той же функции
                         if any(i in Config.QUOTE for i in text) and 'reply_message' in event.object['message']:
